@@ -3,14 +3,14 @@ import {
   useStore,
   getMyToken,
   getQueue,
+  getDoctor,
   positionAhead,
   estimatedWaitMinutes,
   clearMyToken,
 } from "@/lib/mockStore";
-import { getDoctor, statusLabel } from "@/lib/mockData";
 import { StatusPill } from "@/components/StatusPill";
 import { Bell, MapPin, X } from "lucide-react";
-import { useStore as _u } from "@/lib/mockStore";
+
 
 export const Route = createFileRoute("/app/queue")({
   component: QueuePage,
