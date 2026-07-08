@@ -171,14 +171,11 @@ export function clearMyToken() {
 }
 
 // --- React hook ---
+// Subscribe to store version so any mutation triggers a re-render, then run
+// the selector fresh on each render. The store mutates entries in place, so
+// we can't compare snapshots by reference — version bumping is the signal.
 export function useStore<T>(selector: () => T): T {
-  return useSyncExternalStore(
-    subscribe,
-    () => {
-      // trigger re-read by tying to version; selector reads fresh state.
-      void getVersion();
-      return selector();
-    },
-    selector,
-  );
+  useSyncExternalStore(subscribe, getVersion, getVersion);
+  return selector();
 }
+
