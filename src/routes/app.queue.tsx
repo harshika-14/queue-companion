@@ -49,15 +49,16 @@ function QueuePage() {
 }
 
 function ActiveQueue({ doctorId, token }: { doctorId: string; token: string }) {
-  const queue = _u(() => getQueue(doctorId));
-  const ahead = _u(() => positionAhead(doctorId, token));
-  const eta = _u(() => estimatedWaitMinutes(doctorId, token));
+  const queue = useStore(() => getQueue(doctorId));
+  const ahead = useStore(() => positionAhead(doctorId, token));
+  const eta = useStore(() => estimatedWaitMinutes(doctorId, token));
   const doctor = getDoctor(doctorId);
   if (!queue || !doctor) return null;
 
   const you = queue.entries.find((e) => e.token === token);
   const isYourTurn = you?.status === "serving";
   const isDone = you?.status === "done";
+
 
   return (
     <div className="animate-reveal space-y-6">
