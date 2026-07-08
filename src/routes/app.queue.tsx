@@ -109,7 +109,7 @@ function ActiveQueue({ doctorId, token }: { doctorId: string; token: string }) {
               {doctor.specialty} • Room {doctor.room}
             </div>
           </div>
-          <StatusPill status={queue ? (statusLabel ? (doctor.status) : "available") : "closed"} />
+          <StatusPill status={doctor.status} />
         </div>
         <div className="mt-4 flex gap-2">
           <button className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-border bg-background py-3 text-xs font-bold uppercase tracking-widest">
